@@ -1,0 +1,22 @@
+{
+  "name": "harmony",
+  "version": "1.0.0",
+  "description": "Harmony-serverless-backend",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/argon1025/Harmony-serverless-backend.git"
+  },
+  "keywords": [
+    "serverless"
+  ],
+  "author": "argon1025",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/argon1025/Harmony-serverless-backend/issues"
+  },
+  "homepage": "https://github.com/argon1025/Harmony-serverless-backend#readme"
+}
