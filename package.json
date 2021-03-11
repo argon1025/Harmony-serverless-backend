@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/argon1025/Harmony-serverless-backend/issues"
   },
-  "homepage": "https://github.com/argon1025/Harmony-serverless-backend#readme"
+  "homepage": "https://github.com/argon1025/Harmony-serverless-backend#readme",
+  "dependencies": {
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.5.0",
+    "sequelize-auto": "^0.8.1"
+  }
 }
