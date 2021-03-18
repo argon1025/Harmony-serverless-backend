@@ -1,13 +1,8 @@
+const Create = require("../../service/Response");
+
 module.exports = async (event) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: "accounts-Hello!",
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
+    console.log(event);
+    const response = await Create.errorResponse(401,null,"1","hello?");
+    console.log(response);
+    return response;
 };
