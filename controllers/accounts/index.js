@@ -9,6 +9,8 @@
  */
 ///////////////////////////////////// => 로직 로드
 const helloLogic = require("./hello");
+const kakaoAuthorizeLogic = require("./kakao/authorize");
 
 ///////////////////////////////////// => export
 module.exports.hello = helloLogic;
+module.exports.kakaoAuthorize = kakaoAuthorizeLogic;
