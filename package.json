@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/argon1025/Harmony-serverless-backend#readme",
   "dependencies": {
+    "axios": "^0.21.1",
+    "joi": "^17.4.0",
     "mysql2": "^2.2.5",
     "sequelize": "^6.5.0",
     "sequelize-auto": "^0.8.1"
