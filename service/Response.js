@@ -5,13 +5,23 @@ class Response {
             "default Error": {
                 statusCode: "500",
                 errorCode: "0",
-                errorMessage: "Server logic error",
+                errorMessage: "Server logic error your data is not valid",
             },
-            "Bodydata does not exist": {
+            "BodyData does not exist": {
                 statusCode: "404",
                 errorCode: "1",
                 errorMessage: "Bodydata does not exist",
             },
+            "HeadData does not exist": {
+                statusCode: "404",
+                errorCode: "2",
+                errorMessage: "HeadData does not exist",
+            },
+            "Value verification failed":{
+                statusCode: "401",
+                errorCode: "3",
+                errorMessage: "Value verification failed",
+            }
         };
     }
     async nomalResponse(statusCode = 200, header = {}, body = {}) {
