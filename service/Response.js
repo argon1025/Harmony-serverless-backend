@@ -21,6 +21,16 @@ class Response {
                 statusCode: "401",
                 errorCode: "3",
                 errorMessage: "Value verification failed",
+            },
+            "Failed to load user information on Kakao server":{
+                statusCode: "400",
+                errorCode: "4",
+                errorMessage: "Failed to load user information on Kakao server",
+            },
+            "Token validation failed":{
+                statusCode: "400",
+                errorCode: "4",
+                errorMessage: "Token validation failed",
             }
         };
     }
