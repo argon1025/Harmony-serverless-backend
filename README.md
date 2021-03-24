@@ -14,5 +14,8 @@ Service Endpoint Document is [here](https://github.com/argon1025/Harmony-serverl
 - Mysql/SequelizeORM
 - serverless
 
+# Database
+![image](https://user-images.githubusercontent.com/55491354/112328394-a0f3a700-8cf9-11eb-9c0d-14d21c4021d6.png)
+
 # Issues
 [Here](https://github.com/argon1025/Harmony-serverless-backend/issues)
