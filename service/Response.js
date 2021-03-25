@@ -41,6 +41,11 @@ class Response {
                 statusCode: "401",
                 errorCode: "7",
                 errorMessage: "User account registration failed",
+            },
+            "Not registered user":{
+                statusCode: "404",
+                errorCode: "8",
+                errorMessage: "Not registered user",
             }
         };
     }
