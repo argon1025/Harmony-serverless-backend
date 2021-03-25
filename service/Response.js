@@ -29,8 +29,18 @@ class Response {
             },
             "Token validation failed":{
                 statusCode: "400",
-                errorCode: "4",
+                errorCode: "5",
                 errorMessage: "Token validation failed",
+            },
+            "already a registered user":{
+                statusCode: "401",
+                errorCode: "6",
+                errorMessage: "already a registered user",
+            },
+            "User account registration failed":{
+                statusCode: "401",
+                errorCode: "7",
+                errorMessage: "User account registration failed",
             }
         };
     }
