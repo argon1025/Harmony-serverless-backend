@@ -1,6 +1,5 @@
 "use strict";
 const controllers = require("./controllers");
-var Model = require("./models");
 
 /**
  * demo Handler
