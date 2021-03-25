@@ -1,7 +1,28 @@
 const Model = require("../models/index");
 
 class Mysql {
-    // 이미 등록된 카카오 사용자인지 확인
+    // 카카오 어카운트 로그인
+    async kakaoUserSignIn(userId) {
+        try {
+            //모델
+            const result = await Model.Accounts.findOne({
+                where: {
+                    userid: userId,
+                    loginType: "kakao",
+                },
+            });
+
+            // 데이터가 있을경우 true를 반환
+            if (result) {
+                return true;
+            } else {
+                throw new Error("Not registered user");
+            }
+        } catch (error) {
+            throw new Error("Not registered user");
+        }
+    }
+    // 이미 등록된 카카오 어카운트인지 확인
     async alreadyRegisteredKakaoUser(userId) {
         try {
             //모델
@@ -12,7 +33,7 @@ class Mysql {
                 },
             });
 
-            // 사용자가 존재하지 않을경우 승인
+            // 어카운트가 존재하지 않을경우 true를 반환
             // 존재할경우 에러 발생
             // console.log(result);
             if (!result) {
@@ -52,7 +73,6 @@ class Mysql {
             const result1 = await Model.Accounts.findAll();
             console.log(result1);
         } catch (error) {
-            console.log(error);
             throw new Error("User account registration failed");
         }
     }
