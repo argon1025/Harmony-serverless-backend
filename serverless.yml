@@ -68,6 +68,20 @@ functions:
           path: hello
           method: get
           cors: true
+  accountsKakaoAccount:
+    handler: handler.accounts.kakaoAcount
+    events: 
+      - http:
+          path: api/v1/kakao/account
+          method: post
+          cors: true
+  accountsKakaoAuthorize:
+    handler: handler.accounts.kakaoAuthorize
+    events: 
+      - http:
+          path: api/v1/kakao/authorize
+          method: get
+          cors: true
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

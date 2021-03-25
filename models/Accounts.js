@@ -21,6 +21,26 @@ module.exports = function(sequelize, DataTypes) {
         model: 'Jobs',
         key: 'id'
       }
+    },
+    name: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+      comment: "유저이름"
+    },
+    profileImageUrl: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+      comment: "유저 프로필 이미지"
+    },
+    userid: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      comment: "소셜로그인 유저식별 id"
+    },
+    loginType: {
+      type: DataTypes.STRING(10),
+      allowNull: false,
+      comment: "소셜로그인 타입"
     }
   }, {
     sequelize,
