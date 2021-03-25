@@ -18,7 +18,6 @@ class Mysql {
             } else {
                 throw new Error("Not registered user");
             }
-
         } catch (error) {
             throw new Error("Not registered user");
         }
@@ -74,7 +73,6 @@ class Mysql {
             const result1 = await Model.Accounts.findAll();
             console.log(result1);
         } catch (error) {
-            console.log(error);
             throw new Error("User account registration failed");
         }
     }
