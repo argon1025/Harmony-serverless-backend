@@ -76,6 +76,20 @@ class Mysql {
             throw new Error("User account registration failed");
         }
     }
+
+    async getUserInfo(userId){
+        try {
+            let result;
+            if(!userId){
+                result = await Model.Accounts.findAll();
+            }else{
+                result = await Model.Accounts.findOne({where:{id:userId}});
+            }
+            return result;
+        } catch (error) {
+            throw new Error('User information not found')
+        }
+    }
 }
 
 module.exports = new Mysql();
