@@ -77,17 +77,27 @@ class Mysql {
         }
     }
 
-    async getUserInfo(userId){
+    async getAccountInfo(userId) {
         try {
             let result;
-            if(!userId){
+
+            //userId 가 존재하지 않을경우 전체 어카운트 조회해서 반환
+            if (!userId) {
                 result = await Model.Accounts.findAll();
-            }else{
-                result = await Model.Accounts.findOne({where:{id:userId}});
+            } else {
+                //특정 userId만 조회
+                result = await Model.Accounts.findOne({
+                    where: { id: userId },
+                });
+                //결과가 없을경우 에러 생성
+                if (!result) {
+                    throw new Error("User information not found");
+                }
             }
+
             return result;
         } catch (error) {
-            throw new Error('User information not found')
+            throw new Error("User information not found");
         }
     }
 }
