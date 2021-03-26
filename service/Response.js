@@ -46,6 +46,11 @@ class Response {
                 statusCode: "404",
                 errorCode: "8",
                 errorMessage: "Not registered user",
+            },
+            "User information not found":{
+                statusCode: "404",
+                errorCode: "9",
+                errorMessage: "User information not found",
             }
         };
     }
