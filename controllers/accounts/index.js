@@ -12,9 +12,11 @@ const helloLogic = require("./hello");
 const kakaoAuthorizeLogic = require("./kakao/authorize");
 const kakaoAccountLogic = require("./kakao/account");
 const userInfoLogic = require("./accountInfo");
+const modifyAccountLogic = require("./modifyAccount");
 
 ///////////////////////////////////// => export
 module.exports.hello = helloLogic;
 module.exports.kakaoAuthorize = kakaoAuthorizeLogic;
 module.exports.kakaoAcount = kakaoAccountLogic;
 module.exports.userInfo = userInfoLogic;
+module.exports.modifyAccount = modifyAccountLogic;
