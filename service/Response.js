@@ -67,6 +67,18 @@ class Response {
                 statusCode: "404",
                 errorCode: "9",
                 errorMessage: "User information not found",
+            },
+            // 다른 유저 정보를 수정할경우
+            "You do not have permission":{
+                statusCode: "401",
+                errorCode: "9",
+                errorMessage: "You do not have permission to access other user information",
+            },
+            // 유저정보 수정에 실패했을경우
+            "Account update Failed":{
+                statusCode: "401",
+                errorCode: "9",
+                errorMessage: "Account update Failed",
             }
         };
     }
