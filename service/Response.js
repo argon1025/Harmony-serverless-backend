@@ -2,51 +2,67 @@
 class Response {
     constructor() {
         this.ERROR_TABLE = {
+            // 사전 정의된 에러코드가 없을경우
             "default Error": {
                 statusCode: "500",
                 errorCode: "0",
                 errorMessage: "Server logic error your data is not valid",
             },
+            // 필요한 Body data가 없을경우
             "BodyData does not exist": {
                 statusCode: "404",
                 errorCode: "1",
                 errorMessage: "Bodydata does not exist",
             },
+            // Body data parse가 실패했을 겨웅
+            "BodyData is invalid": {
+                statusCode: "404",
+                errorCode: "1",
+                errorMessage: "BodyData is invalid",
+            },
+            // 필요한 HeadData가 없을경우
             "HeadData does not exist": {
                 statusCode: "404",
                 errorCode: "2",
                 errorMessage: "HeadData does not exist",
             },
+            // 데이터 검증에 실패했을경우
             "Value verification failed":{
                 statusCode: "401",
                 errorCode: "3",
                 errorMessage: "Value verification failed",
             },
+            // 토큰으로 유저정보 로드에 실패했을경우
             "Failed to load user information on Kakao server":{
                 statusCode: "400",
                 errorCode: "4",
                 errorMessage: "Failed to load user information on Kakao server",
             },
+            //토큰으로 토큰정보 로드에 실패했을경우
             "Token validation failed":{
                 statusCode: "400",
                 errorCode: "5",
                 errorMessage: "Token validation failed",
             },
+            // 이미 가입된 유저일경우
             "already a registered user":{
                 statusCode: "401",
                 errorCode: "6",
                 errorMessage: "already a registered user",
             },
+            // 데이터베이스에 유저등록에 실패했을경우
             "User account registration failed":{
                 statusCode: "401",
                 errorCode: "7",
                 errorMessage: "User account registration failed",
             },
+            // 로그인 요청을 받았지만 해당 토큰을 가진 유저가 회원가입된 유저가 아닐경우
             "Not registered user":{
                 statusCode: "404",
                 errorCode: "8",
                 errorMessage: "Not registered user",
             },
+            // 특정 유저정보를 찾지 못했을 경우
             "User information not found":{
                 statusCode: "404",
                 errorCode: "9",
