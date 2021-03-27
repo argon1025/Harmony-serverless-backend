@@ -12,6 +12,7 @@ class DataVerification {
         this.MAX_SAFE_INT = Number.MAX_SAFE_INTEGER;
         this.URL_PATTERN = new RegExp(`^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|0-9|:|.|_|/]+$`);
         this.JOBTAG_PATTERN = new RegExp(`^[0-9]+$`);
+        this.NAME_PATTERN = new RegExp(`^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|0-9]+$`);
 
         // 스키마 설정
 
@@ -26,6 +27,10 @@ class DataVerification {
         // 단순 숫자 데이터
         this.NUMBER_SCHEMA = Joi.object({
             number: Joi.number().min(0).max(this.MAX_SAFE_INT),
+        });
+        // name 데이터
+        this.NAME_SCHEMA = Joi.object({
+            name: Joi.string().pattern(this.NAME_PATTERN).min(0).max(15),
         });
     }
 
@@ -56,6 +61,17 @@ class DataVerification {
     // 단순 숫자 데이터
     async checkNumber(value){
         const result = await this.NUMBER_SCHEMA.validate({number:value});
+
+        if (!result.error) {
+            return result;
+        } else {
+            throw new Error("Value verification failed");
+        }
+    }
+
+    // 이름 데이터
+    async checkName(value){
+        const result = await this.NAME_SCHEMA.validate({name:value});
 
         if (!result.error) {
             return result;
