@@ -14,6 +14,8 @@ module.exports.accounts = {
     kakaoAcount: controllers.accounts.kakaoAcount,
     // GET /api/v1/kakao/authorize 로그인을 요청
     kakaoAuthorize: controllers.accounts.kakaoAuthorize,
-    // GET /api/v1/accounts/:accountID 유저 정보를 요청
+    // GET /api/v1/accounts유저 정보를 요청
     userInfo: controllers.accounts.userInfo,
+    // PUT /api/v1/accounts/:accountID 유저 정보를 수정합니다
+    modifyAccount: controllers.accounts.modifyAccount,
 };

@@ -100,6 +100,28 @@ class Mysql {
             throw new Error("User information not found");
         }
     }
+    //카카오 유저아이디와 서비스 유저아이디가 모두 일치하는지 확인
+    async checkAccountIDforKakao(userId=0,kakaoId=0){
+        try {
+            const result = await Model.Accounts.findOne({
+                where: { id: userId, userid:kakaoId },
+            });
+            if (!result) {
+                throw new Error("User information not found");
+            }
+            
+        } catch (error) {
+            throw new Error('You do not have permission');
+        }
+    }
+    async updateAccountInfo(accountId, blogLink, jobTag, name, profileImageUrl){
+        try {
+            const result = await Model.Accounts.update({blogLink:blogLink,jobTag:jobTag,name:name,profileImageUrl:profileImageUrl},{where:{id:accountId}});
+            console.log(result);
+        } catch (error) {
+            throw new Error('Account update Failed');
+        }
+    }
 }
 
 module.exports = new Mysql();
