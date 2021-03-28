@@ -19,3 +19,8 @@ module.exports.accounts = {
     // PUT /api/v1/accounts/:accountID 유저 정보를 수정합니다
     modifyAccount: controllers.accounts.modifyAccount,
 };
+
+module.exports.jobTags = {
+    // GET /api/v1/jobtags 잡 태그 리스트
+    jobTagList: controllers.jobtags.jobTagList,
+};
