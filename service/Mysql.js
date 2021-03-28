@@ -76,7 +76,7 @@ class Mysql {
             throw new Error("User account registration failed");
         }
     }
-
+    // 유저정보 조회
     async getAccountInfo(userId) {
         try {
             let result;
@@ -114,12 +114,22 @@ class Mysql {
             throw new Error('You do not have permission');
         }
     }
+    // 유저 정보 수정
     async updateAccountInfo(accountId, blogLink, jobTag, name, profileImageUrl){
         try {
             const result = await Model.Accounts.update({blogLink:blogLink,jobTag:jobTag,name:name,profileImageUrl:profileImageUrl},{where:{id:accountId}});
             console.log(result);
         } catch (error) {
             throw new Error('Account update Failed');
+        }
+    }
+    // 직업 태그 리스트 조회
+    async getJobTagList(){
+        try {
+            const result = await Model.Jobs.findAll();
+            return result;
+        } catch (error) {
+            throw new Error("Failed to load jobtags");
         }
     }
 }

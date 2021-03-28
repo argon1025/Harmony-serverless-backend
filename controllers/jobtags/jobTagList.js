@@ -8,14 +8,26 @@
  */
  const Create = require("../../service/Response"); // 응답 생성 모듈
  const saveLogs = require("../../service/saveLogs"); // 로그 생성 모듈
- const APIService = require("../../service/APIService"); // API 서비스 모듈
  const Mysql = require("../../service/Mysql"); // 데이터베이스 접근 모듈
- const DataVerification = require("../../service/DataVerification"); // 데이터 검증 모듈
- 
+
  module.exports = async (event) => {
-    response = await Create.nomalResponse(200, null, {
-        error: false,
-        msg: `jobTags load successful`,
-    });
+    let response;
+    try{
+        // 로그 출력
+        saveLogs(event, "Jobtags list", true);
+
+        // 데이터베이스 질의
+        const dataBaseResult = await Mysql.getJobTagList();
+
+        response = await Create.nomalResponse(200, null, {
+            error: false,
+            msg: `JobTags Load successful`,
+            data: dataBaseResult,
+        });
+    }catch(error){
+        // 오류 응답 생성
+        console.log(error);
+        response = await Create.errorResponseUseErrorTable(error);
+    }
     return response;
 };

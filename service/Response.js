@@ -79,6 +79,12 @@ class Response {
                 statusCode: "401",
                 errorCode: "9",
                 errorMessage: "Account update Failed",
+            },
+            // JobTags 정보를 불러오지 못했을경우
+            "Account update Failed":{
+                statusCode: "404",
+                errorCode: "9",
+                errorMessage: "Failed to load jobtags",
             }
         };
     }
