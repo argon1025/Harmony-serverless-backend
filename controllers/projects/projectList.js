@@ -42,12 +42,15 @@ module.exports = async (event) => {
         //데이터 존재 유무 체크 및 데이터 로드
         userData = await clientDataLoad(event);
 
+        //쿼리 스트링 데이터가 있을경우 title에 대한 데이터 검증
         if(userData.title){
             await DataVerification.checkTitle(userData.title);
         }
 
+        // 데이터베이스 질의
         const databaseResult = Mysql.getProjectList(userData.title);
 
+        // 응답 생성
         response = await Create.nomalResponse(200, null, {
             error: false,
             msg: `User Data Load successful`,
