@@ -13,6 +13,7 @@ class DataVerification {
         this.URL_PATTERN = new RegExp(`^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|0-9|:|.|_|/]+$`);
         this.JOBTAG_PATTERN = new RegExp(`^[0-9]+$`);
         this.NAME_PATTERN = new RegExp(`^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|0-9]+$`);
+        this.TITLE_PATTERN = new RegExp(`^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|0-9]+$`);
 
         // 스키마 설정
 
@@ -31,6 +32,10 @@ class DataVerification {
         // name 데이터
         this.NAME_SCHEMA = Joi.object({
             name: Joi.string().pattern(this.NAME_PATTERN).min(0).max(15),
+        });
+        // Project Title 데이터
+        this.TITLE_SCHEMA = Joi.object({
+            title: Joi.string().pattern(this.TITLE_PATTERN).min(0).max(30),
         });
     }
 
@@ -72,6 +77,16 @@ class DataVerification {
     // 이름 데이터
     async checkName(value){
         const result = await this.NAME_SCHEMA.validate({name:value});
+
+        if (!result.error) {
+            return result;
+        } else {
+            throw new Error("Value verification failed");
+        }
+    }
+
+    async checkTitle(value){
+        const result = await this.TITLE_SCHEMA.validate({title:value});
 
         if (!result.error) {
             return result;
