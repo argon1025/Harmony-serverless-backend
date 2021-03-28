@@ -8,7 +8,7 @@
  *
  */
 ///////////////////////////////////// => 로직 로드
-const helloLogic = require("./hello");
+const projectListLogic = require("./projectList");
 
 ///////////////////////////////////// => export
-module.exports.hello = helloLogic;
+module.exports.projectList = projectListLogic;

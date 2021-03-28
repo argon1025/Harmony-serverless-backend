@@ -24,3 +24,8 @@ module.exports.jobTags = {
     // GET /api/v1/jobtags 잡 태그 리스트
     jobTagList: controllers.jobtags.jobTagList,
 };
+
+module.exports.projects = {
+    // GET /api/v1/projects 프로젝트 리스트
+    projectList: controllers.projects.projectList,
+};
