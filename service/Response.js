@@ -85,6 +85,12 @@ class Response {
                 statusCode: "404",
                 errorCode: "9",
                 errorMessage: "Failed to load jobtags",
+            },
+            // Projects 정보를 불러오지 못했을경우
+            "Failed to load Projects":{
+                statusCode: "404",
+                errorCode: "9",
+                errorMessage: "Failed to load Projects",
             }
         };
     }
