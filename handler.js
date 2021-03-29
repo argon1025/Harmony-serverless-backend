@@ -28,4 +28,10 @@ module.exports.jobTags = {
 module.exports.projects = {
     // GET /api/v1/projects 프로젝트 리스트
     projectList: controllers.projects.projectList,
+    // POST /api/v1/projects 프로젝트 생성
+    projectCreate: controllers.projects.projectCreate,
+    // PUT /api/v1/projects/:projectID 프로젝트 수정
+    projectModify: controllers.projects.projectModify,
+    // DELETE /api/v1/projects/:projectID 프로젝트 삭제
+    projectDelete: controllers.projects.projectDelete,
 };

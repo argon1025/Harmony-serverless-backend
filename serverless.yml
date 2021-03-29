@@ -110,6 +110,27 @@ functions:
           path: api/v1/projects
           method: get
           cors: true
+  projectsProjectCreate:
+    handler: handler.projects.projectCreate
+    events: 
+      - http:
+          path: api/v1/projects
+          method: post
+          cors: true
+  projectsProjectModify:
+    handler: handler.projects.projectModify
+    events: 
+      - http:
+          path: api/v1/projects/{postID}
+          method: put
+          cors: true
+  projectsProjectDelete:
+    handler: handler.projects.projectDelete
+    events: 
+      - http:
+          path: api/v1/projects/{postID}
+          method: delete
+          cors: true
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
