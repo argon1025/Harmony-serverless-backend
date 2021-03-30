@@ -65,12 +65,14 @@ module.exports = async (event) => {
         // 데이터 질의
         // 유저가 보낸 Accounts.id와 kakao token userid를 동시에 가지는 열이 있는지 확인합니다
         await Mysql.checkAccountIDforKakao(userData.userID,kakaoUserInfoData.id);
-
+        // 받아온 데이터를 기반으로해당 프로젝트의 관리자인지 확인합니다
+        await Mysql.isItProjectManager(userData.projectID,userData.userID);
+        // 프로젝트를 삭제합니다
+        await Mysql.deleteProject(userData.projectID);
         
         response = await Create.nomalResponse(200, null, {
             error: false,
             msg: `Project Delete successful`,
-            data: userData,
         });
     } catch (error) {
         // 오류 응답 생성
