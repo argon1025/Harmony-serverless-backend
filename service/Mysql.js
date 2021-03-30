@@ -101,35 +101,127 @@ class Mysql {
         }
     }
     //카카오 유저아이디와 서비스 유저아이디가 모두 일치하는지 확인
-    async checkAccountIDforKakao(userId=0,kakaoId=0){
+    async checkAccountIDforKakao(userId = 0, kakaoId = 0) {
         try {
             const result = await Model.Accounts.findOne({
-                where: { id: userId, userid:kakaoId },
+                where: { id: userId, userid: kakaoId },
             });
             if (!result) {
                 throw new Error("User information not found");
             }
-            
         } catch (error) {
-            throw new Error('You do not have permission');
+            throw new Error("You do not have permission");
         }
     }
     // 유저 정보 수정
-    async updateAccountInfo(accountId, blogLink, jobTag, name, profileImageUrl){
+    async updateAccountInfo(
+        accountId,
+        blogLink,
+        jobTag,
+        name,
+        profileImageUrl
+    ) {
         try {
-            const result = await Model.Accounts.update({blogLink:blogLink,jobTag:jobTag,name:name,profileImageUrl:profileImageUrl},{where:{id:accountId}});
+            const result = await Model.Accounts.update(
+                {
+                    blogLink: blogLink,
+                    jobTag: jobTag,
+                    name: name,
+                    profileImageUrl: profileImageUrl,
+                },
+                { where: { id: accountId } }
+            );
             console.log(result);
         } catch (error) {
-            throw new Error('Account update Failed');
+            throw new Error("Account update Failed");
         }
     }
     // 직업 태그 리스트 조회
-    async getJobTagList(){
+    async getJobTagList() {
         try {
             const result = await Model.Jobs.findAll();
             return result;
         } catch (error) {
             throw new Error("Failed to load jobtags");
+        }
+    }
+    // 프로젝트 리스트 조회
+    async getProjectList(title) {
+        let result;
+        try {
+            if (title) {
+                //타이틀 옵션이 존재할경우
+                result = await Model.Projects.findAll({
+                    where: { title: { like: `%${title}%` } },
+                });
+            } else {
+                // 타이틀 옵션이 존재하지 않을경우 전체 리스트 조회
+                result = await Model.Projects.findAll();
+            }
+        } catch (error) {
+            throw new Error("Failed to load Projects");
+        }
+    }
+    // 프로젝트 생성
+    async createProject(title, content, userID) {
+        try {
+            const today = new Date();
+            const dd = today.getDate();
+            const mm = today.getMonth() + 1; //January is 0!
+            const yyyy = today.getFullYear();
+
+            const result = await Model.Projects.create({
+                managerID: userID,
+                title: title,
+                content: content,
+                date: `${yyyy}/${mm}/${dd}`,
+                delete: "false",
+                stateID: 1,
+            });
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+            throw new Error("Project Create failed");
+        }
+    }
+    // 프로젝트 수정 권한 확인
+    async isItProjectManager(projectID, managerID) {
+        try {
+            const result = await Model.Projects.findOne({
+                where: { id: projectID, managerID: managerID },
+            });
+            if (!result) {
+                throw new Error("User information not found");
+            }
+        } catch (error) {
+            throw new Error("You do not have permission");
+        }
+    }
+    // 프로젝트 삭제 - 소프트 삭제
+    async deleteProject(projectID) {
+        try {
+            const result = await Model.Projects.update(
+                {
+                    delete: "true",
+                },
+                { where: { id: projectID } }
+            );
+        } catch (error) {
+            throw new Error("Project Delete Failed");
+        }
+    }
+    // 프로젝트 수정
+    async modifyProject(projectID,title,content) {
+        try {
+            const result = await Model.Projects.update(
+                {
+                    title: title,
+                    content: content,
+                },
+                { where: { id: projectID } }
+            );
+        } catch (error) {
+            throw new Error("Project Modify Failed");
         }
     }
 }

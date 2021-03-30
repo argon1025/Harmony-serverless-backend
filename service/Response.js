@@ -27,65 +27,89 @@ class Response {
                 errorMessage: "HeadData does not exist",
             },
             // 데이터 검증에 실패했을경우
-            "Value verification failed":{
+            "Value verification failed": {
                 statusCode: "401",
                 errorCode: "3",
                 errorMessage: "Value verification failed",
             },
             // 토큰으로 유저정보 로드에 실패했을경우
-            "Failed to load user information on Kakao server":{
+            "Failed to load user information on Kakao server": {
                 statusCode: "400",
                 errorCode: "4",
                 errorMessage: "Failed to load user information on Kakao server",
             },
             //토큰으로 토큰정보 로드에 실패했을경우
-            "Token validation failed":{
+            "Token validation failed": {
                 statusCode: "400",
                 errorCode: "5",
                 errorMessage: "Token validation failed",
             },
             // 이미 가입된 유저일경우
-            "already a registered user":{
+            "already a registered user": {
                 statusCode: "401",
                 errorCode: "6",
                 errorMessage: "already a registered user",
             },
             // 데이터베이스에 유저등록에 실패했을경우
-            "User account registration failed":{
+            "User account registration failed": {
                 statusCode: "401",
                 errorCode: "7",
                 errorMessage: "User account registration failed",
             },
             // 로그인 요청을 받았지만 해당 토큰을 가진 유저가 회원가입된 유저가 아닐경우
-            "Not registered user":{
+            "Not registered user": {
                 statusCode: "404",
                 errorCode: "8",
                 errorMessage: "Not registered user",
             },
             // 특정 유저정보를 찾지 못했을 경우
-            "User information not found":{
+            "User information not found": {
                 statusCode: "404",
                 errorCode: "9",
                 errorMessage: "User information not found",
             },
             // 다른 유저 정보를 수정할경우
-            "You do not have permission":{
+            "You do not have permission": {
                 statusCode: "401",
                 errorCode: "9",
                 errorMessage: "You do not have permission to access other user information",
             },
             // 유저정보 수정에 실패했을경우
-            "Account update Failed":{
+            "Account update Failed": {
                 statusCode: "401",
                 errorCode: "9",
                 errorMessage: "Account update Failed",
             },
             // JobTags 정보를 불러오지 못했을경우
-            "Account update Failed":{
+            "Account update Failed": {
                 statusCode: "404",
                 errorCode: "9",
                 errorMessage: "Failed to load jobtags",
-            }
+            },
+            // Projects 정보를 불러오지 못했을경우
+            "Failed to load Projects": {
+                statusCode: "404",
+                errorCode: "9",
+                errorMessage: "Failed to load Projects",
+            },
+            // Project를 생성하지 못했을 경우
+            "Project Create failed": {
+                statusCode: "404",
+                errorCode: "9",
+                errorMessage: "Project Create failed",
+            },
+            // Project를 삭제하지 못했을 경우
+            "Project Delete Failed": {
+                statusCode: "404",
+                errorCode: "9",
+                errorMessage: "Project Delete Failed",
+            },
+            // Project를 수정하지 못했을 경우
+            "Project Modify Failed": {
+                statusCode: "404",
+                errorCode: "9",
+                errorMessage: "Project Modify Failed",
+            },
         };
     }
     async nomalResponse(statusCode = 200, header = {}, body = {}) {

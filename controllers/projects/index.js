@@ -8,7 +8,13 @@
  *
  */
 ///////////////////////////////////// => 로직 로드
-const helloLogic = require("./hello");
+const projectListLogic = require("./projectList");
+const projectCreateLogic = require("./projectCreate");
+const projectModifyLogic = require("./projectModify");
+const projectDeleteLogic = require("./projectDelete");
 
 ///////////////////////////////////// => export
-module.exports.hello = helloLogic;
+module.exports.projectList = projectListLogic;
+module.exports.projectCreate = projectCreateLogic;
+module.exports.projectModify = projectModifyLogic;
+module.exports.projectDelete = projectDeleteLogic;
