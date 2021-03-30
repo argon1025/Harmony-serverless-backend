@@ -55,7 +55,16 @@ module.exports = async (event) => {
         await DataVerification.checkNumber(userData.userID);
         await DataVerification.checkNumber(userData.projectID);
 
-        //데이터 질의
+        // 토큰 유효성 검증부
+        await APIService.checkKakaoAppidValidation(userData.userToken);
+        // 토큰 으로 카카오 인증서버에 유저정보 요청
+        const kakaoUserInfoData = await APIService.getKakaoUserInfo(
+            userData.userToken
+        );
+
+        // 데이터 질의
+        // 유저가 보낸 Accounts.id와 kakao token userid를 동시에 가지는 열이 있는지 확인합니다
+        await Mysql.checkAccountIDforKakao(userData.userID,kakaoUserInfoData.id);
 
         
         response = await Create.nomalResponse(200, null, {

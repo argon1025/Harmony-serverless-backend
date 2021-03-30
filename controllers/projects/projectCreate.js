@@ -8,10 +8,11 @@
  * 헤더 ( 토큰, 토큰타입, 서비스 유저id, )
  * 바디(제목, 콘텐트)
  */
- const Create = require("../../service/Response");
- const saveLogs = require("../../service/saveLogs");
- const DataVerification = require("../../service/DataVerification");
- const Mysql = require("../../service/Mysql");
+ const Create = require("../../service/Response"); // 응답 생성 모듈
+ const saveLogs = require("../../service/saveLogs"); // 로그 생성 모듈
+ const APIService = require("../../service/APIService"); // API 서비스 모듈
+ const Mysql = require("../../service/Mysql"); // 데이터베이스 접근 모듈
+ const DataVerification = require("../../service/DataVerification"); // 데이터 검증 모듈
 
  async function clientDataLoad(event) {
     let bodyData;
@@ -64,7 +65,17 @@ module.exports = async (event) => {
         await DataVerification.checkTitle(userData.title);
         await DataVerification.checkContent(userData.content);
 
-        //데이터 질의
+        // 토큰 유효성 검증부
+        await APIService.checkKakaoAppidValidation(userData.userToken);
+
+        // 토큰 으로 카카오 인증서버에 유저정보 요청
+        const kakaoUserInfoData = await APIService.getKakaoUserInfo(
+            userData.userToken
+        );
+
+        // 데이터 질의
+        // 유저가 보낸 Accounts.id와 kakao token userid를 동시에 가지는 열이 있는지 확인합니다
+        await Mysql.checkAccountIDforKakao(userData.userID,kakaoUserInfoData.id);
 
         
         response = await Create.nomalResponse(200, null, {
