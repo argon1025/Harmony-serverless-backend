@@ -162,6 +162,68 @@ class Mysql {
             throw new Error("Failed to load Projects");
         }
     }
+    // 프로젝트 생성
+    async createProject(title, content, userID) {
+        try {
+            const today = new Date();
+            const dd = today.getDate();
+            const mm = today.getMonth() + 1; //January is 0!
+            const yyyy = today.getFullYear();
+
+            const result = await Model.Projects.create({
+                managerID: userID,
+                title: title,
+                content: content,
+                date: `${yyyy}/${mm}/${dd}`,
+                delete: "false",
+                stateID: 1,
+            });
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+            throw new Error("Project Create failed");
+        }
+    }
+    // 프로젝트 수정 권한 확인
+    async isItProjectManager(projectID, managerID) {
+        try {
+            const result = await Model.Projects.findOne({
+                where: { id: projectID, managerID: managerID },
+            });
+            if (!result) {
+                throw new Error("User information not found");
+            }
+        } catch (error) {
+            throw new Error("You do not have permission");
+        }
+    }
+    // 프로젝트 삭제 - 소프트 삭제
+    async deleteProject(projectID) {
+        try {
+            const result = await Model.Projects.update(
+                {
+                    delete: "true",
+                },
+                { where: { id: projectID } }
+            );
+        } catch (error) {
+            throw new Error("Project Delete Failed");
+        }
+    }
+    // 프로젝트 수정
+    async modifyProject(projectID,title,content) {
+        try {
+            const result = await Model.Projects.update(
+                {
+                    title: title,
+                    content: content,
+                },
+                { where: { id: projectID } }
+            );
+        } catch (error) {
+            throw new Error("Project Delete Failed");
+        }
+    }
 }
 
 module.exports = new Mysql();
