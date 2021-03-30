@@ -53,7 +53,7 @@ module.exports = async (event) => {
         // 응답 생성
         response = await Create.nomalResponse(200, null, {
             error: false,
-            msg: `User Data Load successful`,
+            msg: `Project Load successful`,
             data: databaseResult,
         });
 
