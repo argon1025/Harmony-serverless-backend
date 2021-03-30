@@ -221,7 +221,7 @@ class Mysql {
                 { where: { id: projectID } }
             );
         } catch (error) {
-            throw new Error("Project Delete Failed");
+            throw new Error("Project Modify Failed");
         }
     }
 }
