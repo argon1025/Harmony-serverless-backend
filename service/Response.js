@@ -1,4 +1,20 @@
-//에러일경우, 메시지, 코드
+/**
+ * Response
+ * 2021.04.04
+ * 전체 응답을 관리하는 모듈입니다
+ * 
+ * 정상 응답 생성
+ * nomalResponse(statusCode = 200, header = {}, body = {})
+ * 사용자 정의된 정상 응답을 생성할 수 있습니다
+ * 
+ * 에러 응답 생성
+ * async errorResponse(statusCode = 401,header = {},errorCode = "",errorMsg = "")
+ * 사용자 정의된 에러 응답을 생성할 수 있습니다
+ * 
+ * 자동 에러 응답 생성
+ * errorResponseUseErrorTable(error)
+ * constructor에서 생성된 ERROR_TABLE를 참고하여 AWS apigateway에 맞는 응답 객체를 생성해서 리턴합니다
+ */
 class Response {
     constructor() {
         this.ERROR_TABLE = {

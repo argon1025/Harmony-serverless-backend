@@ -1,3 +1,60 @@
+/**
+ * Mysql
+ * 2021.04.04
+ * 데이터 베이스에 접근하는 엔드포인트로써 사용되는 클래스 입니다
+ * 
+ * 카카오 어카운트 로그인
+ * kakaoUserSignIn(userId)
+ * 로그인 타입이 kakao이고 userId를 속성으로 가지는 어카운트가 있는지 확인하고 bool 타입을 리턴합니다
+ * 
+ * 등록된 어카운트인지 확인
+ * alreadyRegisteredKakaoUser(userId)
+ * 로그인 타입이 kakao이고 userId를 속성으로 가지는 어카운트가 있는지 확인하고 bool 타입을 리턴합니다
+ * 
+ * 카카오 어카운트 등록
+ * registerKakaoUserAccount(userData)
+ * userData 객체에 있는 내용으로 어카운트를 등록합니다
+ * 
+ * 유저(리스트)정보 조회
+ * getAccountInfo(userId)
+ * userId의 정보를 반환하고 해당 데이터가 undifine일경우 전체 유저 데이터를 반환합니다
+ * 
+ * 프로필 수정 권한 확인
+ * checkAccountIDforKakao(userId = 0, kakaoId = 0)
+ * 유저 id(userId)와 토큰내부 id(kakaoId)가 일치하는지 확인합니다
+ * 
+ * 유저 정보 수정
+ * updateAccountInfo(accountId,blogLink,jobTag,name,profileImageUrl)
+ * 전달 받는 인자로 유저 정보를 수정합니다
+ * 
+ * -----------------------------------------------------
+ * 
+ * 직업태그 리스트
+ * getJobTagList()
+ * 직업 태그 리스트 정보를 반환합닏
+ * 
+ * -----------------------------------------------------
+ * 
+ * 프로젝트(리스트) 정보 조회
+ * getProjectList(title)
+ * 프로젝트 정보를 반환하고 해당 데이터가 undifine일경우 전체 프로젝트 리스트를 반환합니다
+ * 
+ * 프로젝트 생성
+ * createProject(title, content, userID)
+ * 입력된 인자를 기준으로 프로젝트를 생성합니다
+ * 
+ * 프로젝트 수정 권한 확인
+ * isItProjectManager(projectID, managerID)
+ * projectID, managerID 가 일치하는지 확인합니다
+ * 
+ * 프로젝트 삭제
+ * deleteProject(projectID)
+ * projectID 프로젝트를 삭제합니다 소프트 삭제 됩니다
+ * 
+ * 프로젝트 수정
+ * modifyProject(projectID,title,content)
+ * 전달받은 인자의 프로젝트 내용을 수정합니다
+ */
 const Model = require("../models/index");
 
 class Mysql {
@@ -58,8 +115,6 @@ class Mysql {
     }
      */
     async registerKakaoUserAccount(userData) {
-        console.log(userData);
-        console.log(userData.blogLink);
         try {
             const result = await Model.Accounts.create({
                 blogLink: userData.blogLink,
@@ -69,9 +124,6 @@ class Mysql {
                 userid: userData.userId,
                 loginType: "kakao",
             });
-            console.log(result);
-            const result1 = await Model.Accounts.findAll();
-            console.log(result1);
         } catch (error) {
             throw new Error("User account registration failed");
         }
@@ -131,7 +183,6 @@ class Mysql {
                 },
                 { where: { id: accountId } }
             );
-            console.log(result);
         } catch (error) {
             throw new Error("Account update Failed");
         }
@@ -178,9 +229,7 @@ class Mysql {
                 delete: "false",
                 stateID: 1,
             });
-            console.log(result);
         } catch (error) {
-            console.log(error);
             throw new Error("Project Create failed");
         }
     }

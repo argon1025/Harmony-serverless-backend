@@ -4,6 +4,8 @@
  * 
  * Joi 라이브러리 사용
  * https://joi.dev/api/?v=17.4.0
+ * 
+ * constructor에서 정규식과 Joi object를 선언합니다
  */
 const Joi = require("joi");
 
