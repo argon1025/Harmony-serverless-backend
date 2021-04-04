@@ -93,7 +93,7 @@ module.exports = async (event) => {
         });
     } catch (error) {
         // 오류 응답 생성
-        console.log(error);
+        //console.log(error);
         response = await Create.errorResponseUseErrorTable(error);
     }
     return response;

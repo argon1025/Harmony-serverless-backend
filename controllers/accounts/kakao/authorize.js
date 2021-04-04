@@ -19,7 +19,6 @@ const Mysql = require("../../../service/Mysql");
 
 //head, 데이터 로드 (usertoken, usertokenType)
 async function clientDataLoad(event) {
-    let bodyData;
     let headData;
 
     try {
@@ -46,7 +45,7 @@ module.exports = async (event) => {
     let userData; // bodyData
     try {
         // 로그 출력
-        saveLogs(event, "Kakao authorize", true);
+        saveLogs(event, "Kakao authorize", false);
 
         //데이터 존재 유무 체크 및 데이터 로드
         userData = await clientDataLoad(event);
@@ -68,7 +67,7 @@ module.exports = async (event) => {
             msg: `Kakao User Token Authentication Successful`,
         });
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         response = await Create.errorResponseUseErrorTable(error);
     }
 

@@ -69,7 +69,7 @@ module.exports = async(event)=>{
     let userData; // bodyData
     try {
         // 로그 출력
-        saveLogs(event, "Modify Account", true);
+        saveLogs(event, "Modify Account", false);
 
         //데이터 존재 유무 체크 및 데이터 로드
         //    accountID: pathParameter.accountID,
@@ -108,7 +108,7 @@ module.exports = async(event)=>{
         });
     } catch (error) {
         // 오류 응답 생성
-        console.log(error);
+        //console.log(error);
         response = await Create.errorResponseUseErrorTable(error);
     }
     return response;

@@ -59,7 +59,7 @@ module.exports = async (event) => {
 
     try {
         // 로그 출력
-        saveLogs(event, "Kakao account join", true);
+        saveLogs(event, "Kakao account join", false);
 
         //데이터 존재 유무 체크 및 데이터 로드
         userData = await clientDataLoad(event);
@@ -96,7 +96,7 @@ module.exports = async (event) => {
         });
     } catch (error) {
         // 오류 응답 생성
-        console.log(error);
+        //console.log(error);
         response = await Create.errorResponseUseErrorTable(error);
     }
 

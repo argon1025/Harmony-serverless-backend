@@ -14,7 +14,7 @@
     let response;
     try{
         // 로그 출력
-        saveLogs(event, "Jobtags list", true);
+        saveLogs(event, "Jobtags list", false);
 
         // 데이터베이스 질의
         const dataBaseResult = await Mysql.getJobTagList();
@@ -26,7 +26,7 @@
         });
     }catch(error){
         // 오류 응답 생성
-        console.log(error);
+        //console.log(error);
         response = await Create.errorResponseUseErrorTable(error);
     }
     return response;
