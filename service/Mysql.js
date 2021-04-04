@@ -152,6 +152,20 @@ class Mysql {
             throw new Error("User information not found");
         }
     }
+    // 유저정보 조회
+    async getAccountInfoUseKakaoID(kakaoID) {
+        try {
+            let result;
+
+            result = await Model.Accounts.findOne({
+                where: { userid: kakaoID,loginType:"kakao"},
+            });
+
+            return result;
+        } catch (error) {
+            throw new Error("User information not found");
+        }
+    }
     //카카오 유저아이디와 서비스 유저아이디가 모두 일치하는지 확인
     async checkAccountIDforKakao(userId = 0, kakaoId = 0) {
         try {

@@ -43,6 +43,7 @@ async function clientDataLoad(event) {
 module.exports = async (event) => {
     let response; // responseData
     let userData; // bodyData
+    let userInfo;
     try {
         // 로그 출력
         saveLogs(event, "Kakao authorize", false);
@@ -61,10 +62,14 @@ module.exports = async (event) => {
         //받아온 정보에서 가입된 회원인지 체크
         await Mysql.kakaoUserSignIn(kakaoUserInfoData.id);
 
+        //유저 프로필 정보 조회
+        userInfo = await Mysql.getAccountInfoUseKakaoID(kakaoUserInfoData.id);
+
         // 정상 처리 response 생성
         response = await Create.nomalResponse(200, null, {
             error: false,
             msg: `Kakao User Token Authentication Successful`,
+            data: userInfo
         });
     } catch (error) {
         //console.log(error);
