@@ -61,13 +61,6 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
-    events: 
-      - http:
-          path: hello
-          method: get
-          cors: true
   accountsKakaoAccount:
     handler: handler.accounts.kakaoAcount
     events: 
