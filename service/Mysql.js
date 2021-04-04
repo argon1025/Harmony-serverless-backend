@@ -56,6 +56,8 @@
  * 전달받은 인자의 프로젝트 내용을 수정합니다
  */
 const Model = require("../models/index");
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
 class Mysql {
     // 카카오 어카운트 로그인
@@ -215,15 +217,18 @@ class Mysql {
         let result;
         try {
             if (title) {
+                console.log(title);
                 //타이틀 옵션이 존재할경우
                 result = await Model.Projects.findAll({
-                    where: { title: { like: `%${title}%` } },
+                    where: { title: { [Op.like]: `%${title}%` } },
                 });
             } else {
                 // 타이틀 옵션이 존재하지 않을경우 전체 리스트 조회
                 result = await Model.Projects.findAll();
             }
+            return result;
         } catch (error) {
+            console.log(error);
             throw new Error("Failed to load Projects");
         }
     }

@@ -48,7 +48,8 @@ module.exports = async (event) => {
         }
 
         // 데이터베이스 질의
-        const databaseResult = Mysql.getProjectList(userData.title);
+        const databaseResult = await Mysql.getProjectList(userData.title);
+        console.log(databaseResult);
 
         // 응답 생성
         response = await Create.nomalResponse(200, null, {
