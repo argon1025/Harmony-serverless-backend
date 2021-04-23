@@ -2,15 +2,15 @@
  * Response
  * 2021.04.04
  * 전체 응답을 관리하는 모듈입니다
- * 
+ *
  * 정상 응답 생성
  * nomalResponse(statusCode = 200, header = {}, body = {})
  * 사용자 정의된 정상 응답을 생성할 수 있습니다
- * 
+ *
  * 에러 응답 생성
  * async errorResponse(statusCode = 401,header = {},errorCode = "",errorMsg = "")
  * 사용자 정의된 에러 응답을 생성할 수 있습니다
- * 
+ *
  * 자동 에러 응답 생성
  * errorResponseUseErrorTable(error)
  * constructor에서 생성된 ERROR_TABLE를 참고하여 AWS apigateway에 맞는 응답 객체를 생성해서 리턴합니다
@@ -88,7 +88,8 @@ class Response {
             "You do not have permission": {
                 statusCode: "401",
                 errorCode: "9",
-                errorMessage: "You do not have permission to access other user information",
+                errorMessage:
+                    "You do not have permission to access other user information",
             },
             // 유저정보 수정에 실패했을경우
             "Account update Failed": {
@@ -131,6 +132,10 @@ class Response {
     async nomalResponse(statusCode = 200, header = {}, body = {}) {
         const response = {
             statusCode: statusCode,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": true,
+            },
             body: JSON.stringify(body, null, 2),
         };
         return response;
@@ -145,6 +150,10 @@ class Response {
         //응답 데이터를 작성합니다
         const response = {
             statusCode: statusCode,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": true,
+            },
             body: JSON.stringify(
                 { errorCode: errorCode, msg: errorMsg },
                 null,
@@ -184,6 +193,10 @@ class Response {
             // 저장된 에러 객체로 응답 작성
             response = {
                 statusCode: errorInfo.statusCode,
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Credentials": true,
+                },
                 body: JSON.stringify(
                     {
                         errorCode: errorInfo.errorCode,
