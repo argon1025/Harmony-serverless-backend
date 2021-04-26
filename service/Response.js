@@ -175,6 +175,10 @@ class Response {
             // 지정된 에러 객체로 응답 작성
             response = {
                 statusCode: errorInfo.statusCode,
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Credentials": true,
+                },
                 body: JSON.stringify(
                     {
                         errorCode: errorInfo.errorCode,
