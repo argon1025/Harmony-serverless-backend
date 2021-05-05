@@ -8,6 +8,8 @@ Team recruitment platform for junior developers
 
 Service Endpoint Document is [here](https://github.com/argon1025/Harmony-serverless-backend/issues/1)
 
+Service pages is [HERE](http://harmony.seongrok.net)
+
 # Project Stack
 ![download](https://user-images.githubusercontent.com/55491354/111910406-95f40900-8aa4-11eb-8fe8-46bb9530bd20.png)
 - NodeJS
